@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.thymeleaf.util.ObjectUtils;
+import com.cloudinary.utils.ObjectUtils;
 
 import java.io.IOException;
 import java.util.Map;
@@ -37,11 +37,11 @@ try {
     Map uploadResult = cloudc.upload(file.getBytes(), ObjectUtils.asMap("resourcetype", "auto"));
     actor.setHeadshot(uploadResult.get("url").toString());
     actorRepository.save(actor);
-} catch (IOException e){
+} catch (IOException e) {
     e.printStackTrace();
     return "redirect:/add";
 }
-
+return "redirect:/";
 }
 
 }
